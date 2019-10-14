@@ -64,9 +64,9 @@ public class GoodsController {
 				@RequestParam(defaultValue="10")Integer pageSize
 			) {
 		
-		//List<Goods> list = redisTemplate.opsForZSet().range("goods_zset", (page-1)*pageSize, (page-1)*pageSize+pageSize-1);
+		Set list = redisTemplate.opsForZSet().reverseRange("goods_zset", (page-1)*pageSize, (page-1)*pageSize+pageSize-1);
 		
-		//model.addAttribute("list", list);
+		model.addAttribute("list", list);
 		
 		if(page!=1) {
 			model.addAttribute("prePage", page-1);

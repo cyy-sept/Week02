@@ -50,7 +50,7 @@ public class ReadTest {
 			
 			String[] split = string2.split("\\==");
 			for (int i = 0; i < split.length; i++) {
-				//System.out.println(split[i]);
+				System.out.println(split[i]);
 				
 				Goods goods = new Goods();
 				boolean number = StringUtil.isNumber(split[0]);
@@ -69,7 +69,7 @@ public class ReadTest {
 					goods.setName(split[3]);
 				}
 				
-				System.out.println(goods.toString());
+				//System.out.println(goods.toString());
 				redisTemplate.opsForList().leftPush("goods_list",goods);
 			}
 			
@@ -90,15 +90,15 @@ public class ReadTest {
 			String[] split = string2.split("\\==");
 			for (int i = 0; i < split.length; i++) {
 				//System.out.println(split[i]);
-//				
-//				Goods goods = new Goods();
-//				goods.setId(Integer.parseInt(split[0]));
-//				goods.setName(split[1]);
-//				goods.setPrice(null);
-//				goods.setCpar(split[3]);
 				
-				//System.out.println(goods.toString());
-				//redisTemplate.opsForZSet().add("goods_zset", goods);
+				Goods goods = new Goods();
+				goods.setId(Integer.parseInt(split[0]));
+				goods.setName(split[1]);
+				goods.setPrice(null);
+				goods.setCpar(split[3]);
+				
+				System.out.println(goods.toString());
+				redisTemplate.opsForZSet().add("goods_zset", goods,80);
 			}
 			
 		}
